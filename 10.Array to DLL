@@ -1,0 +1,37 @@
+Introduction to Doubly Linked List
+Difficulty: EasyAccuracy: 76.51%Submissions: 42K+Points: 2
+Geek is learning data structures and is familiar with linked lists, but he's curious about how to access the previous element in a linked list in the same way that we access the next element. His teacher explains doubly linked lists to him.
+
+Given an integer array arr of size n. Construct the doubly linked list from arr and return the head of it.
+
+Example 1:
+
+Input:
+n = 5
+arr = [1,2,3,4,5]
+Output:
+1 2 3 4 5
+Explanation: Linked list for the given array will be 1<->2<->3<->4<->5.
+
+
+
+class Solution {
+    // Function to construct a doubly linked list from an array
+    public static DoublyNode constructDoublyLinkedList(int n, int[] arr) {
+        if (n == 0) return null; // If array is empty, return null.
+
+        // Create the head node
+        DoublyNode head = new DoublyNode(arr[0]);
+        DoublyNode current = head;
+
+        // Iterate through the array to create the list
+        for (int i = 1; i < n; i++) {
+            DoublyNode newNode = new DoublyNode(arr[i]); // Create a new node.
+            current.next = newNode; // Link the current node to the next node.
+            newNode.prev = current; // Link the new node to the current node.
+            current = newNode; // Move the current pointer to the new node.
+        }
+
+        return head; // Return the head of the list.
+    }
+}
