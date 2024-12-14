@@ -1,0 +1,148 @@
+class MyStack {
+    private Queue<Integer> q1;
+    private Queue<Integer> q2;
+
+    public MyStack() {
+        q1=new LinkedList<>();
+        q2=new LinkedList<>();
+        
+    }
+    
+    public void push(int x) {
+        //q1.add(x);
+        while(!q1.isEmpty())
+        {
+            q2.add(q1.remove());
+        }
+        q1.add(x);
+        while(!q2.isEmpty())
+        {
+            q1.add(q2.remove());
+        }
+        
+    }
+    
+    public int pop() {
+        return q1.poll();
+        
+    }
+    
+    public int top() {
+        return q1.peek();
+        
+    }
+    
+    public boolean empty() {
+        return q1.isEmpty();
+        
+        
+    }
+}
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
+ */
+
+
+
+
+2.import java.util.LinkedList;
+import java.util.Queue;
+
+class MyStack {
+    private Queue<Integer> queue1; // Primary queue
+    private Queue<Integer> queue2; // Secondary queue
+
+    // Constructor
+    public MyStack() {
+        queue1 = new LinkedList<>();
+        queue2 = new LinkedList<>();
+    }
+
+    // Push element x onto stack
+    public void push(int x) {
+        // Push the element into the secondary queue
+        queue2.add(x);
+
+        // Transfer all elements from the primary queue to the secondary queue
+        while (!queue1.isEmpty()) {
+            queue2.add(queue1.poll());
+        }
+
+        // Swap the names of the two queues
+        Queue<Integer> temp = queue1;
+        queue1 = queue2;
+        queue2 = temp;
+    }
+
+    // Removes the element on top of the stack and returns it
+    public int pop() {
+        // Remove the front of the primary queue
+        return queue1.poll();
+    }
+
+    // Get the top element of the stack
+    public int top() {
+        // Peek at the front of the primary queue
+        return queue1.peek();
+    }
+
+    // Returns true if the stack is empty, false otherwise
+    public boolean empty() {
+        return queue1.isEmpty();
+    }
+}
+
+
+
+single queue
+
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+class MyStack {
+    private Queue<Integer> queue; // Single queue implementation
+
+    // Constructor
+    public MyStack() {
+        queue = new LinkedList<>();
+    }
+
+    // Push element x onto stack
+    public void push(int x) {
+        // Add the new element to the queue
+        queue.add(x);
+
+        // Rotate the queue to make the new element the front
+        int size = queue.size();
+        for (int i = 0; i < size - 1; i++) {
+            queue.add(queue.poll());
+        }
+    }
+
+    // Removes the element on top of the stack and returns it
+    public int pop() {
+        // Remove and return the front element
+        return queue.poll();
+    }
+
+    // Get the top element of the stack
+    public int top() {
+        // Return the front element without removing it
+        return queue.peek();
+    }
+
+    // Returns true if the stack is empty, false otherwise
+    public boolean empty() {
+        return queue.isEmpty();
+    }
+}
+
+
+
